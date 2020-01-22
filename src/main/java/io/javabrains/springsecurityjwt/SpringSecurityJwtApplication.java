@@ -66,13 +66,9 @@ class HelloWorldController {
 			    queryString("grant_type", grant_type).
 			    asString();
 		
-		System.out.println(response.getBody());
-		
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(response.getBody());
 		
-		//return json;
-
 		return ResponseEntity.ok(json);
 	}
 	
@@ -108,41 +104,43 @@ class HelloWorldController {
 //		//return ResponseEntity.ok(new AuthenticationResponse(jwt));
 //	}
 	
-	@RequestMapping(value = "/oauth/token", method = RequestMethod.POST)
-	public JSONObject getAccessToken(@RequestParam("grant_type") String grant_type
-											,@RequestParam("assertion") String assertion
-											/*,@RequestParam("redirect_uri") String redirect_uri*/) throws Exception	{
-		
-		String base_url_docusign = env.getProperty("url.dev.docusign");
-		
-		HttpResponse<String> response = Unirest.post(base_url_docusign + "/oauth/token").
-				header("accept", "application/json").
-				header("content-type", "application/json").
-			    queryString("assertion", assertion).
-			    queryString("grant_type", grant_type).
-			    asString();
-		
-		System.out.println(response.getBody());
-		
-		JSONParser parser = new JSONParser();
-		JSONObject json = (JSONObject) parser.parse(response.getBody());
-		
-		return json;
-
-		//return ResponseEntity.ok(new AuthenticationResponse(jwt));
-	}
+//	
+//	@RequestMapping(value = "/oauth/token", method = RequestMethod.POST)
+//	public JSONObject getAccessToken(@RequestParam("grant_type") String grant_type
+//											,@RequestParam("assertion") String assertion
+//											/*,@RequestParam("redirect_uri") String redirect_uri*/) throws Exception	{
+//		
+//		String base_url_docusign = env.getProperty("url.dev.docusign");
+//		
+//		HttpResponse<String> response = Unirest.post(base_url_docusign + "/oauth/token").
+//				header("accept", "application/json").
+//				header("content-type", "application/json").
+//			    queryString("assertion", assertion).
+//			    queryString("grant_type", grant_type).
+//			    asString();
+//		
+//		System.out.println(response.getBody());
+//		
+//		JSONParser parser = new JSONParser();
+//		JSONObject json = (JSONObject) parser.parse(response.getBody());
+//		
+//		return json;
+//
+//		//return ResponseEntity.ok(new AuthenticationResponse(jwt));
+//	}
 	
 	
-	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	 public String getUsersUsingUnirest() throws Exception {
-		    HttpResponse<String> response = Unirest.get("http://localhost:3000/users").
-		        header("Content-Type",  "application/json").
-		        asString();
-		    System.out.println(response.getBody());
-		    //System.out.println(response.getBody().getObject().toString(2));
-		    
-		    return response.getBody();
-		  }
+//	
+//	@RequestMapping(value = "/users", method = RequestMethod.GET)
+//	 public String getUsersUsingUnirest() throws Exception {
+//		    HttpResponse<String> response = Unirest.get("http://localhost:3000/users").
+//		        header("Content-Type",  "application/json").
+//		        asString();
+//		    System.out.println(response.getBody());
+//		    //System.out.println(response.getBody().getObject().toString(2));
+//		    
+//		    return response.getBody();
+//		  }
 
 	
 
