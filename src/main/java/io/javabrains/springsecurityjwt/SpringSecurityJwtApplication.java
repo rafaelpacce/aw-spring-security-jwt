@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,16 +44,12 @@ class HelloWorldController {
 	@ResponseBody
 	public ResponseEntity<JSONObject> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 		
-		String keyPublic = authenticationRequest.getKeyPublic();
-		String keyPrivate = authenticationRequest.getKeyPrivate();		
-		String oAuthBasePath = authenticationRequest.getoAuthBasePath();
-		String clientId = authenticationRequest.getClientId();
-		String userId = authenticationRequest.getUserId();
-		
-		final String jwt = jwtTokenUtil.generateJWTAssertionFromString(keyPublic, keyPrivate, oAuthBasePath, clientId, userId);
-		
-		//authenticationRequest.setJwt(jwt);		
-		//System.out.println(authenticationRequest.getJwt());
+
+		final String jwt = jwtTokenUtil.generateJWTAssertionFromString(authenticationRequest.getKeyPublic(), 
+																	   authenticationRequest.getKeyPrivate(), 
+																	   authenticationRequest.getoAuthBasePath(), 
+																	   authenticationRequest.getClientId(), 
+																	   authenticationRequest.getUserId());
 		
 		String base_url_docusign = env.getProperty("url.dev.docusign");
 		String grant_type = env.getProperty("grant.docusign");
